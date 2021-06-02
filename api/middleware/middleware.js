@@ -1,5 +1,7 @@
+
 function logger(req, res, next) {
   // DO YOUR MAGIC
+  server.use(logger);
 }
 
 function validateUserId(req, res, next) {
