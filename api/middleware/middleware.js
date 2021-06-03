@@ -3,22 +3,20 @@ const User = require('../users/users-model')
 function logger(req, res, next) {
   // DO YOUR MAGIC
   console.log(`[${req.method}] ${req.url} ${new Date().toISOString()}`)
-    
+
   next();
 }
 
 function validateUserId(req, res, next) {
   // DO YOUR MAGIC
   console.log('validateUserId middleware')
-  User.findById(req.params.id)
+  User.getById(req.params.id)
     .then(user => {
       if (!user) {
         res.status(404).json({
           error: `user not found`
         })
-      
       } else {
-        // since we have the hub we append it to req
         req.user = user
         next()
       }
